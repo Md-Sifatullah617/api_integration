@@ -1,5 +1,6 @@
+import 'package:api_integraton/Screen/product_create_screen.dart';
 import 'package:flutter/material.dart';
-import 'home_page.dart';
+
 
 void main() => runApp(const MyApp());
 
@@ -14,7 +15,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.green,
       ),
-      home: const HomePage(),
+      home: const PCreateScreen(),
     );
   }
 }
