@@ -9,6 +9,20 @@ class PCreateScreen extends StatefulWidget {
 }
 
 class _PCreateScreenState extends State<PCreateScreen> {
+  Map<String, String> formValues = {
+    "Img": "",
+    "ProductCode": "",
+    "ProductName": "",
+    "Qty": "",
+    "TotalPrice": "",
+    "UnitPrice": ""
+  };
+  inputOnChange(key, value) {
+    setState(() {
+      formValues.update(key, (value) => value);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -21,35 +35,45 @@ class _PCreateScreenState extends State<PCreateScreen> {
               padding: const EdgeInsets.all(25.0),
               child: Column(children: [
                 TextFormField(
-                  onChanged: (value) {},
+                  onChanged: (value) {
+                    inputOnChange("ProductName", value);
+                  },
                   decoration: appInputDecoration("Product Name"),
                 ),
                 const SizedBox(
                   height: 20,
                 ),
                 TextFormField(
-                  onChanged: (value) {},
+                  onChanged: (value) {
+                    inputOnChange("ProductCode", value);
+                  },
                   decoration: appInputDecoration("Product Code"),
                 ),
                 const SizedBox(
                   height: 20,
                 ),
                 TextFormField(
-                  onChanged: (value) {},
+                  onChanged: (value) {
+                    inputOnChange("Img", value);
+                  },
                   decoration: appInputDecoration("Product Image"),
                 ),
                 const SizedBox(
                   height: 20,
                 ),
                 TextFormField(
-                  onChanged: (value) {},
+                  onChanged: (value) {
+                    inputOnChange("UnitPrice", value);
+                  },
                   decoration: appInputDecoration("Unit Price"),
                 ),
                 const SizedBox(
                   height: 20,
                 ),
                 TextFormField(
-                  onChanged: (value) {},
+                  onChanged: (value) {
+                    inputOnChange("TotalPrice", value);
+                  },
                   decoration: appInputDecoration("Total Price"),
                 ),
                 const SizedBox(
@@ -80,15 +104,20 @@ class _PCreateScreenState extends State<PCreateScreen> {
                         child: Text("4 pcs"),
                       )
                     ],
-                    onChanged: (value) {},
+                    onChanged: (value) {
+                      inputOnChange("Qty", value);
+                    },
                     isExpanded: true,
                     underline: Container(),
                   ),
                 ),
-                const SizedBox(height: 20,),
-                ElevatedButton(onPressed: (){}, 
-                style: appButtonStyle(),
-                child: successButton("Submit")),
+                const SizedBox(
+                  height: 20,
+                ),
+                ElevatedButton(
+                    onPressed: () {},
+                    style: appButtonStyle(),
+                    child: successButton("Submit")),
               ]),
             ),
           ),
