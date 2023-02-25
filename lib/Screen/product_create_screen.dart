@@ -1,3 +1,4 @@
+import 'package:api_integraton/Style/style.dart';
 import 'package:flutter/material.dart';
 
 class PCreateScreen extends StatefulWidget {
@@ -20,18 +21,27 @@ class _PCreateScreenState extends State<PCreateScreen> {
               child: Column(children: [
                 TextFormField(
                   onChanged: (value) {},
+                  decoration: appInputDecoration("Product Name"),
                 ),
+                const SizedBox(height: 20,),
                 TextFormField(
                   onChanged: (value) {},
+                  decoration: appInputDecoration("Product Code"),
                 ),
+                const SizedBox(height: 20,),
                 TextFormField(
                   onChanged: (value) {},
+                  decoration: appInputDecoration("Product Image"),
                 ),
+                const SizedBox(height: 20,),
                 TextFormField(
                   onChanged: (value) {},
+                  decoration: appInputDecoration("Unit Price"),
                 ),
+                const SizedBox(height: 20,),
                 TextFormField(
                   onChanged: (value) {},
+                  decoration: appInputDecoration("Total Price"),
                 ),
               ]),
             ),
