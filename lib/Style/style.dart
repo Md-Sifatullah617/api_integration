@@ -36,8 +36,29 @@ DecoratedBox appDropdownStyle(child) {
         border: Border.all(color: colorWhite, width: 1),
         borderRadius: BorderRadius.circular(4)),
     child: Padding(
-        padding: const EdgeInsets.only(right: 20, left: 20),
-        child: child
-        ),
+        padding: const EdgeInsets.only(right: 20, left: 20), child: child),
+  );
+}
+
+ButtonStyle appButtonStyle() {
+  return ElevatedButton.styleFrom(
+      elevation: 1,
+      padding: const EdgeInsets.all(0),
+      backgroundColor: Colors.transparent,
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(6)));
+}
+
+Ink successButton(buttonText) {
+  return Ink(
+    decoration: BoxDecoration(
+        color: colorGreen, borderRadius: BorderRadius.circular(6)),
+    child: Container(
+      height: 45,
+      alignment: Alignment.center,
+      child: Text(
+        buttonText,
+        style: const TextStyle(fontWeight: FontWeight.w400, fontSize: 15),
+      ),
+    ),
   );
 }
