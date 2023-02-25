@@ -28,3 +28,16 @@ InputDecoration appInputDecoration(label) {
       border: const OutlineInputBorder(),
       labelText: label);
 }
+
+DecoratedBox appDropdownStyle(child) {
+  return DecoratedBox(
+    decoration: BoxDecoration(
+        color: colorWhite,
+        border: Border.all(color: colorWhite, width: 1),
+        borderRadius: BorderRadius.circular(4)),
+    child: Padding(
+        padding: const EdgeInsets.only(right: 20, left: 20),
+        child: child
+        ),
+  );
+}
