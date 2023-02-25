@@ -17,10 +17,29 @@ class _PCreateScreenState extends State<PCreateScreen> {
     "TotalPrice": "",
     "UnitPrice": ""
   };
-  inputOnChange(key, value) {
+  inputOnChange(mapKey, textValue) {
     setState(() {
-      formValues.update(key, (value) => value);
+      formValues.update(mapKey, (value) => textValue);
     });
+  }
+
+  formOnSubmit(){
+    if(formValues["Img"]!.isEmpty){
+        
+    }else if(formValues["ProductCode"]!.isEmpty){
+
+    }else if(formValues["ProductName"]!.isEmpty){
+
+    }
+    else if(formValues["Qty"]!.isEmpty){
+
+    }
+    else if(formValues["TotalPrice"]!.isEmpty){
+
+    }
+    else if(formValues["UnitPrice"]!.isEmpty){
+
+    }
   }
 
   @override
@@ -35,8 +54,8 @@ class _PCreateScreenState extends State<PCreateScreen> {
               padding: const EdgeInsets.all(25.0),
               child: Column(children: [
                 TextFormField(
-                  onChanged: (value) {
-                    inputOnChange("ProductName", value);
+                  onChanged: (textValue) {
+                    inputOnChange("ProductName", textValue);
                   },
                   decoration: appInputDecoration("Product Name"),
                 ),
@@ -44,8 +63,8 @@ class _PCreateScreenState extends State<PCreateScreen> {
                   height: 20,
                 ),
                 TextFormField(
-                  onChanged: (value) {
-                    inputOnChange("ProductCode", value);
+                  onChanged: (textValue) {
+                    inputOnChange("ProductCode", textValue);
                   },
                   decoration: appInputDecoration("Product Code"),
                 ),
@@ -53,8 +72,8 @@ class _PCreateScreenState extends State<PCreateScreen> {
                   height: 20,
                 ),
                 TextFormField(
-                  onChanged: (value) {
-                    inputOnChange("Img", value);
+                  onChanged: (textValue) {
+                    inputOnChange("Img", textValue);
                   },
                   decoration: appInputDecoration("Product Image"),
                 ),
@@ -62,8 +81,8 @@ class _PCreateScreenState extends State<PCreateScreen> {
                   height: 20,
                 ),
                 TextFormField(
-                  onChanged: (value) {
-                    inputOnChange("UnitPrice", value);
+                  onChanged: (textValue) {
+                    inputOnChange("UnitPrice", textValue);
                   },
                   decoration: appInputDecoration("Unit Price"),
                 ),
@@ -71,8 +90,8 @@ class _PCreateScreenState extends State<PCreateScreen> {
                   height: 20,
                 ),
                 TextFormField(
-                  onChanged: (value) {
-                    inputOnChange("TotalPrice", value);
+                  onChanged: (textValue) {
+                    inputOnChange("TotalPrice", textValue);
                   },
                   decoration: appInputDecoration("Total Price"),
                 ),
@@ -81,7 +100,7 @@ class _PCreateScreenState extends State<PCreateScreen> {
                 ),
                 appDropdownStyle(
                   DropdownButton(
-                    value: "",
+                    value: formValues["Qty"],
                     items: const [
                       DropdownMenuItem(
                         value: "",
@@ -104,8 +123,8 @@ class _PCreateScreenState extends State<PCreateScreen> {
                         child: Text("4 pcs"),
                       )
                     ],
-                    onChanged: (value) {
-                      inputOnChange("Qty", value);
+                    onChanged: (textValue) {
+                        inputOnChange("Qty", textValue);
                     },
                     isExpanded: true,
                     underline: Container(),
