@@ -19,6 +19,7 @@ class _PCreateScreenState extends State<PCreateScreen> {
     "TotalPrice": "",
     "UnitPrice": ""
   };
+  bool loading = false;
   inputOnChange(mapKey, textValue) {
     setState(() {
       formValues.update(mapKey, (value) => textValue);
@@ -39,7 +40,13 @@ class _PCreateScreenState extends State<PCreateScreen> {
     } else if (formValues["UnitPrice"]!.isEmpty) {
       errorToast("Unit Price Required !");
     } else {
+      setState(() {
+        loading = true;
+      });
       await productCreateRequest(formValues);
+      setState(() {
+        loading = false;
+      });
     }
   }
 
@@ -50,7 +57,7 @@ class _PCreateScreenState extends State<PCreateScreen> {
       body: Stack(children: [
         screenBackground(context),
         Container(
-          child: SingleChildScrollView(
+          child: loading?const Center(child: (CircularProgressIndicator())):SingleChildScrollView(
             child: Padding(
               padding: const EdgeInsets.all(25.0),
               child: Column(children: [
