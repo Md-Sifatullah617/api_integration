@@ -14,6 +14,7 @@ class _PCreateScreenState extends State<PCreateScreen> {
     return Scaffold(
       appBar: AppBar(title: const Text("Create Product")),
       body: Stack(children: [
+        screenBackground(context),
         Container(
           child: SingleChildScrollView(
             child: Padding(
