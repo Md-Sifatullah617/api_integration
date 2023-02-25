@@ -1,6 +1,8 @@
 import 'package:api_integraton/Style/style.dart';
 import 'package:flutter/material.dart';
 
+import '../RestAPI/rest_client.dart';
+
 class PCreateScreen extends StatefulWidget {
   const PCreateScreen({super.key});
 
@@ -23,7 +25,7 @@ class _PCreateScreenState extends State<PCreateScreen> {
     });
   }
 
-  formOnSubmit() {
+  formOnSubmit() async {
     if (formValues["Img"]!.isEmpty) {
       errorToast("Image Link Required !");
     } else if (formValues["ProductCode"]!.isEmpty) {
@@ -36,7 +38,9 @@ class _PCreateScreenState extends State<PCreateScreen> {
       errorToast("Total Price Required !");
     } else if (formValues["UnitPrice"]!.isEmpty) {
       errorToast("Unit Price Required !");
-    } else {}
+    } else {
+      await productCreateRequest(formValues);
+    }
   }
 
   @override

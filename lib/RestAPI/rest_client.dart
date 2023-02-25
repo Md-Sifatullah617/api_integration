@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'package:api_integraton/Style/style.dart';
 import 'package:http/http.dart' as http;
 
-productCreateRequest(formValues) async {
+Future<bool> productCreateRequest(formValues) async {
   var uRL = Uri.parse("https://crud.teamrabbil.com/api/v1/CreateProduct");
   var postBody = json.encode(formValues);
   var postHeader = {"Content-Type": "application/json"};
