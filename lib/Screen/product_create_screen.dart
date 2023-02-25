@@ -44,6 +44,17 @@ class _PCreateScreenState extends State<PCreateScreen> {
                   onChanged: (value) {},
                   decoration: appInputDecoration("Total Price"),
                 ),
+                const SizedBox(height: 20,),
+                DropdownButton(items: const [
+                    DropdownMenuItem(value: "",child: Text("Select Qt"),),
+                    DropdownMenuItem(value: "1 pcs",child: Text("1 pcs"),),
+                    DropdownMenuItem(value: "2 pcs",child: Text("2 pcs"),),
+                    DropdownMenuItem(value: "3 pcs",child: Text("3 pcs"),),
+                    DropdownMenuItem(value: "4 pcs",child: Text("4 pcs"),)
+                ], onChanged: (value) { 
+
+                 },
+                )
               ]),
             ),
           ),
