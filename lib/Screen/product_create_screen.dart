@@ -23,23 +23,20 @@ class _PCreateScreenState extends State<PCreateScreen> {
     });
   }
 
-  formOnSubmit(){
-    if(formValues["Img"]!.isEmpty){
-        
-    }else if(formValues["ProductCode"]!.isEmpty){
-
-    }else if(formValues["ProductName"]!.isEmpty){
-
-    }
-    else if(formValues["Qty"]!.isEmpty){
-
-    }
-    else if(formValues["TotalPrice"]!.isEmpty){
-
-    }
-    else if(formValues["UnitPrice"]!.isEmpty){
-
-    }
+  formOnSubmit() {
+    if (formValues["Img"]!.isEmpty) {
+      errorToast("Image Link Required !");
+    } else if (formValues["ProductCode"]!.isEmpty) {
+      errorToast("Product Code Required !");
+    } else if (formValues["ProductName"]!.isEmpty) {
+      errorToast("Product Name Required !");
+    } else if (formValues["Qty"]!.isEmpty) {
+      errorToast("Qty Required !");
+    } else if (formValues["TotalPrice"]!.isEmpty) {
+      errorToast("Total Price Required !");
+    } else if (formValues["UnitPrice"]!.isEmpty) {
+      errorToast("Unit Price Required !");
+    } else {}
   }
 
   @override
@@ -124,7 +121,7 @@ class _PCreateScreenState extends State<PCreateScreen> {
                       )
                     ],
                     onChanged: (textValue) {
-                        inputOnChange("Qty", textValue);
+                      inputOnChange("Qty", textValue);
                     },
                     isExpanded: true,
                     underline: Container(),
@@ -134,7 +131,9 @@ class _PCreateScreenState extends State<PCreateScreen> {
                   height: 20,
                 ),
                 ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      formOnSubmit();
+                    },
                     style: appButtonStyle(),
                     child: successButton("Submit")),
               ]),
