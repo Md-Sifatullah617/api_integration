@@ -11,32 +11,49 @@ class ProductGVScreen extends StatefulWidget {
 }
 
 class _ProductGVScreenState extends State<ProductGVScreen> {
-    List productList=[];
-    bool loading=false;
-    callData()async{
-        loading=true;
-        var data=await productGVLRequest();
-        setState(() {
-          productList=data;
-          loading=false;          
-        });
-    }
+  List productList = [];
+  bool loading = false;
+  callData() async {
+    loading = true;
+    var data = await productGVLRequest();
+    setState(() {
+      productList = data;
+      loading = false;
+    });
+  }
 
-    @override
+  @override
   void initState() {
     super.initState();
     callData();
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-            title: const Text("List Product"),
-        ),
-        body: Stack(children: [
-            screenBackground(context),
-            
-        ]),
+      appBar: AppBar(
+        title: const Text("List Product"),
+      ),
+      body: Stack(children: [
+        screenBackground(context),
+        Container(
+          child: loading
+              ? (Center(
+                  child: CircularProgressIndicator(),
+                ))
+              : (GridView.builder(
+                  gridDelegate: pGVDStyle(),
+                  itemBuilder: (context, index) {
+                    return Card(
+                        child: Column(
+                            children: [
+                                
+                            ],
+                        ),
+                    );
+                  })),
+        )
+      ]),
     );
   }
 }

@@ -64,26 +64,31 @@ Ink successButton(buttonText) {
   );
 }
 
-
-void errorToast(msg){
-    Fluttertoast.showToast(
-        msg: msg,
-        toastLength: Toast.LENGTH_SHORT,
-        gravity: ToastGravity.BOTTOM,
-        timeInSecForIosWeb: 1,
-        backgroundColor: colorRed,
-        textColor: colorWhite,
-        fontSize: 16.0
-    );
+void errorToast(msg) {
+  Fluttertoast.showToast(
+      msg: msg,
+      toastLength: Toast.LENGTH_SHORT,
+      gravity: ToastGravity.BOTTOM,
+      timeInSecForIosWeb: 1,
+      backgroundColor: colorRed,
+      textColor: colorWhite,
+      fontSize: 16.0);
 }
-void successToast(msg){
-    Fluttertoast.showToast(
-        msg: msg,
-        toastLength: Toast.LENGTH_SHORT,
-        gravity: ToastGravity.BOTTOM,
-        timeInSecForIosWeb: 1,
-        backgroundColor: colorGreen,
-        textColor: colorWhite,
-        fontSize: 16.0
-    );
+
+void successToast(msg) {
+  Fluttertoast.showToast(
+      msg: msg,
+      toastLength: Toast.LENGTH_SHORT,
+      gravity: ToastGravity.BOTTOM,
+      timeInSecForIosWeb: 1,
+      backgroundColor: colorGreen,
+      textColor: colorWhite,
+      fontSize: 16.0);
+}
+
+SliverGridDelegateWithFixedCrossAxisCount pGVDStyle() {
+  return const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2,
+  mainAxisSpacing: 2,
+  mainAxisExtent: 250
+  );
 }
