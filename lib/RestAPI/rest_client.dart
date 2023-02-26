@@ -19,3 +19,19 @@ Future<bool> productCreateRequest(formValues) async {
     return false;
   }
 }
+
+Future<List> productGVLRequest() async {
+  var uRL = Uri.parse("https://crud.teamrabbil.com/api/v1/ReadProduct");
+  var postHeader = {"Content-Type": "application/json"};
+  var response = await http.get(uRL, headers: postHeader);
+  var resultCode = response.statusCode;
+  var resultBody = json.decode(response.body);
+
+  if (resultCode == 200 && resultBody["status"] == "success") {
+    successToast("Request Success");
+    return resultBody["data"];
+  } else {
+    errorToast("Request Fail! try again");
+    return [];
+  }
+}
