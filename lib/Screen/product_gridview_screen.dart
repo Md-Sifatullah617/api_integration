@@ -1,4 +1,5 @@
 import 'package:api_integraton/Style/style.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../RestAPI/rest_client.dart';
@@ -41,35 +42,67 @@ class _ProductGVScreenState extends State<ProductGVScreen> {
               ? (const Center(
                   child: CircularProgressIndicator(),
                 ))
-              : (GridView.builder(
-                  gridDelegate: pGVDStyle(),
-                  itemCount: productList.length,
-                  itemBuilder: (context, index) {
-                    return Card(
-                      child: Column(
-                        // crossAxisAlignment: CrossAxisAlignment.stretch,
-                        children: [
-                          Expanded(
-                              child: Image.network(
-                            productList[index]["Img"],
-                            fit: BoxFit.fill,
-                          )),
-                          Container(
-                            child: Padding(
-                              padding: const EdgeInsets.fromLTRB(5,5,5,8),
-                              child: Column(
-                                  children: [
+              : RefreshIndicator(
+                  onRefresh: () async {
+                    await callData();
+                  },
+                  child: (GridView.builder(
+                      gridDelegate: pGVDStyle(),
+                      itemCount: productList.length,
+                      itemBuilder: (context, index) {
+                        return Card(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.stretch,
+                            children: [
+                              Expanded(
+                                  child: Image.network(
+                                productList[index]["Img"],
+                                fit: BoxFit.fill,
+                              )),
+                              Container(
+                                child: Padding(
+                                  padding:
+                                      const EdgeInsets.fromLTRB(5, 5, 5, 8),
+                                  child: Column(
+                                    children: [
                                       Text(productList[index]["ProductName"]),
-                                      const SizedBox(height: 7,),
-                                      Text("Price: "+productList[index]["UnitPrice"]+" BDT")
-                                  ],
-                              ),
-                            ),
-                          )
-                        ],
-                      ),
-                    );
-                  })),
+                                      const SizedBox(
+                                        height: 7,
+                                      ),
+                                      Text("Price: " +
+                                          productList[index]["UnitPrice"] +
+                                          " BDT"),
+                                      Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.end,
+                                        children: [
+                                          OutlinedButton(
+                                              onPressed: () {},
+                                              child: const Icon(
+                                                CupertinoIcons
+                                                    .ellipsis_vertical_circle,
+                                                size: 18,
+                                              )),
+                                          const SizedBox(
+                                            width: 4,
+                                          ),
+                                          OutlinedButton(
+                                              onPressed: () {},
+                                              child: const Icon(
+                                                CupertinoIcons.delete,
+                                                size: 18,
+                                              ))
+                                        ],
+                                      )
+                                    ],
+                                  ),
+                                ),
+                              )
+                            ],
+                          ),
+                        );
+                      })),
+                ),
         )
       ]),
     );
