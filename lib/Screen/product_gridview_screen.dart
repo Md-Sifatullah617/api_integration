@@ -53,7 +53,19 @@ class _ProductGVScreenState extends State<ProductGVScreen> {
                               child: Image.network(
                             productList[index]["Img"],
                             fit: BoxFit.fill,
-                          ))
+                          )),
+                          Container(
+                            child: Padding(
+                              padding: const EdgeInsets.fromLTRB(5,5,5,8),
+                              child: Column(
+                                  children: [
+                                      Text(productList[index]["ProductName"]),
+                                      const SizedBox(height: 7,),
+                                      Text("Price: "+productList[index]["UnitPrice"]+" BDT")
+                                  ],
+                              ),
+                            ),
+                          )
                         ],
                       ),
                     );
