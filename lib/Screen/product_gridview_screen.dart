@@ -38,7 +38,7 @@ class _ProductGVScreenState extends State<ProductGVScreen> {
         screenBackground(context),
         Container(
           child: loading
-              ? (Center(
+              ? (const Center(
                   child: CircularProgressIndicator(),
                 ))
               : (GridView.builder(
@@ -47,7 +47,7 @@ class _ProductGVScreenState extends State<ProductGVScreen> {
                     return Card(
                         child: Column(
                             children: [
-                                
+                                Expanded(child: Image.network(productList[index]["Img"], fit: BoxFit.fill,))
                             ],
                         ),
                     );

@@ -87,8 +87,6 @@ void successToast(msg) {
 }
 
 SliverGridDelegateWithFixedCrossAxisCount pGVDStyle() {
-  return const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2,
-  mainAxisSpacing: 2,
-  mainAxisExtent: 250
-  );
+  return const SliverGridDelegateWithFixedCrossAxisCount(
+      crossAxisCount: 2, mainAxisSpacing: 2, mainAxisExtent: 250);
 }
