@@ -43,13 +43,19 @@ class _ProductGVScreenState extends State<ProductGVScreen> {
                 ))
               : (GridView.builder(
                   gridDelegate: pGVDStyle(),
+                  itemCount: productList.length,
                   itemBuilder: (context, index) {
                     return Card(
-                        child: Column(
-                            children: [
-                                Expanded(child: Image.network(productList[index]["Img"], fit: BoxFit.fill,))
-                            ],
-                        ),
+                      child: Column(
+                        // crossAxisAlignment: CrossAxisAlignment.stretch,
+                        children: [
+                          Expanded(
+                              child: Image.network(
+                            productList[index]["Img"],
+                            fit: BoxFit.fill,
+                          ))
+                        ],
+                      ),
                     );
                   })),
         )
