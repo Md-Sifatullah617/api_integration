@@ -12,7 +12,7 @@ class ProductGVScreen extends StatefulWidget {
 
 class _ProductGVScreenState extends State<ProductGVScreen> {
   List productList = [];
-  bool loading = false;
+  bool loading = true;
   callData() async {
     loading = true;
     var data = await productGVLRequest();
