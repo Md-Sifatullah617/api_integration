@@ -35,3 +35,18 @@ Future<List> productGVLRequest() async {
     return [];
   }
 }
+
+Future<bool> productDeleteRequest(id) async {
+  var uRL = Uri.parse("https://crud.teamrabbil.com/api/v1/DeleteProduct/" + id);
+  var postHeader = {"Content-Type": "application/json"};
+  var response = await http.get(uRL, headers: postHeader);
+  var resultCode = response.statusCode;
+  var resultBody = json.decode(response.body);
+  if (resultCode == 200 && resultBody["status"] == "success") {
+    successToast("Request Success");
+    return true;
+  } else {
+    errorToast("Request fail ! try again");
+    return false;
+  }
+}
