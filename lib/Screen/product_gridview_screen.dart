@@ -23,6 +23,34 @@ class _ProductGVScreenState extends State<ProductGVScreen> {
     });
   }
 
+  deleteItem(id) {
+    showDialog(
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            title: const Text("Delete !"),
+            content: const Text("Do you really want to delete?"),
+            actions: [
+              OutlinedButton(
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                  child: const Text("No")),
+              OutlinedButton(
+                  onPressed: () async {
+                    Navigator.of(context);
+                    setState(() {
+                      loading = true;
+                    });
+                    await productDeleteRequest(id);
+                    await callData();
+                  },
+                  child: const Text("Yes"))
+            ],
+          );
+        });
+  }
+
   @override
   void initState() {
     super.initState();
@@ -87,7 +115,9 @@ class _ProductGVScreenState extends State<ProductGVScreen> {
                                             width: 4,
                                           ),
                                           OutlinedButton(
-                                              onPressed: () {},
+                                              onPressed: () {
+                                                deleteItem(productList[index]["_id"]);
+                                              },
                                               child: const Icon(
                                                 CupertinoIcons.delete,
                                                 size: 18,
