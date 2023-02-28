@@ -38,7 +38,7 @@ class _ProductGVScreenState extends State<ProductGVScreen> {
                   child: const Text("No")),
               OutlinedButton(
                   onPressed: () async {
-                    Navigator.of(context);
+                    Navigator.pop(context);
                     setState(() {
                       loading = true;
                     });
