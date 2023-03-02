@@ -1,3 +1,4 @@
+import 'package:api_integraton/Screen/product_gridview_screen.dart';
 import 'package:api_integraton/Style/style.dart';
 import 'package:flutter/material.dart';
 
@@ -42,7 +43,7 @@ class _PUpdateScreenState extends State<PUpdateScreen> {
 
   bool loading = false;
 
-  formOnSubmit() {
+  formOnSubmit() async {
     if (formValues["Img"]!.isEmpty) {
       errorToast("Image Link Required !");
     } else if (formValues["ProductCode"]!.isEmpty) {
@@ -59,10 +60,8 @@ class _PUpdateScreenState extends State<PUpdateScreen> {
       setState(() {
         loading = true;
       });
-      productCreateRequest(formValues);
-      setState(() {
-        loading = false;
-      });
+      await productUpdateRequest(formValues, widget.productItem["_id"]);
+      Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context)=> ProductGVScreen()), (route) => false);
     }
   }
 
@@ -80,6 +79,7 @@ class _PUpdateScreenState extends State<PUpdateScreen> {
                     padding: const EdgeInsets.all(25.0),
                     child: Column(children: [
                       TextFormField(
+                        initialValue: formValues["ProductName"],
                         onChanged: (textValue) {
                           inputOnChange("ProductName", textValue);
                         },
@@ -89,6 +89,7 @@ class _PUpdateScreenState extends State<PUpdateScreen> {
                         height: 20,
                       ),
                       TextFormField(
+                        initialValue: formValues["ProductCode"],
                         onChanged: (textValue) {
                           inputOnChange("ProductCode", textValue);
                         },
@@ -108,6 +109,7 @@ class _PUpdateScreenState extends State<PUpdateScreen> {
                         height: 20,
                       ),
                       TextFormField(
+                        initialValue: formValues["UnitPrice"],
                         onChanged: (textValue) {
                           inputOnChange("UnitPrice", textValue);
                         },
@@ -117,6 +119,7 @@ class _PUpdateScreenState extends State<PUpdateScreen> {
                         height: 20,
                       ),
                       TextFormField(
+                        initialValue: formValues["TotalPrice"],
                         onChanged: (textValue) {
                           inputOnChange("TotalPrice", textValue);
                         },
