@@ -42,7 +42,6 @@ class _PUpdateScreenState extends State<PUpdateScreen> {
   }
 
   bool loading = false;
-
   formOnSubmit() async {
     if (formValues["Img"]!.isEmpty) {
       errorToast("Image Link Required !");
