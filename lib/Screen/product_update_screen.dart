@@ -11,6 +11,8 @@ class PUpdateScreen extends StatefulWidget {
 class _PUpdateScreenState extends State<PUpdateScreen> {
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Scaffold(
+        appBar: AppBar(title: const Text("Update Product")),
+    );
   }
 }

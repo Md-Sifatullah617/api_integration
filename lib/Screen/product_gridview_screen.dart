@@ -1,3 +1,5 @@
+import 'package:api_integraton/Screen/product_create_screen.dart';
+import 'package:api_integraton/Screen/product_update_screen.dart';
 import 'package:api_integraton/Style/style.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -49,6 +51,11 @@ class _ProductGVScreenState extends State<ProductGVScreen> {
             ],
           );
         });
+  }
+
+  goToUpdate(context) {
+    Navigator.push(context,
+        MaterialPageRoute(builder: (context) => const PUpdateScreen()));
   }
 
   @override
@@ -105,7 +112,9 @@ class _ProductGVScreenState extends State<ProductGVScreen> {
                                             MainAxisAlignment.end,
                                         children: [
                                           OutlinedButton(
-                                              onPressed: () {},
+                                              onPressed: () {
+                                                goToUpdate(context);
+                                              },
                                               child: const Icon(
                                                 CupertinoIcons
                                                     .ellipsis_vertical_circle,
@@ -139,7 +148,12 @@ class _ProductGVScreenState extends State<ProductGVScreen> {
             right: 15,
             bottom: 15,
             child: FloatingActionButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const PCreateScreen()));
+              },
               child: const Icon(
                 Icons.add,
                 size: 40,
