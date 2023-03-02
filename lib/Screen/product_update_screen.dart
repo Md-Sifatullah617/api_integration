@@ -57,7 +57,7 @@ class _PUpdateScreenState extends State<PUpdateScreen> {
       body: Stack(children: [
         screenBackground(context),
         Container(
-          child: SingleChildScrollView(
+          child: loading? const Center(child: CircularProgressIndicator()) : SingleChildScrollView(
             child: Padding(
               padding: const EdgeInsets.all(25.0),
               child: Column(children: [
