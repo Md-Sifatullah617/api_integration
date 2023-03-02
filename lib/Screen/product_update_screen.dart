@@ -1,6 +1,8 @@
 import 'package:api_integraton/Style/style.dart';
 import 'package:flutter/material.dart';
 
+import '../RestAPI/rest_client.dart';
+
 class PUpdateScreen extends StatefulWidget {
   const PUpdateScreen({super.key});
 
@@ -21,6 +23,31 @@ class _PUpdateScreenState extends State<PUpdateScreen> {
     setState(() {
       formValues.update(mapKey, (value) => textValue);
     });
+  }
+  bool loading=false;
+
+  formOnSubmit(){
+    if (formValues["Img"]!.isEmpty) {
+      errorToast("Image Link Required !");
+    } else if (formValues["ProductCode"]!.isEmpty) {
+      errorToast("Product Code Required !");
+    } else if (formValues["ProductName"]!.isEmpty) {
+      errorToast("Product Name Required !");
+    } else if (formValues["Qty"]!.isEmpty) {
+      errorToast("Qty Required !");
+    } else if (formValues["TotalPrice"]!.isEmpty) {
+      errorToast("Total Price Required !");
+    } else if (formValues["UnitPrice"]!.isEmpty) {
+      errorToast("Unit Price Required !");
+    } else {
+      setState(() {
+        loading = true;
+      });
+      productCreateRequest(formValues);
+      setState(() {
+        loading = false;
+      });
+    }
   }
 
   @override
@@ -109,12 +136,15 @@ class _PUpdateScreenState extends State<PUpdateScreen> {
                   isExpanded: true,
                   underline: Container(),
                 )),
-                const SizedBox(height: 20,),
-                ElevatedButton(onPressed: (){
-                    
-                }, 
-                style: appButtonStyle(),
-                child: successButton("Submit"))
+                const SizedBox(
+                  height: 20,
+                ),
+                ElevatedButton(
+                    onPressed: () {
+                      formOnSubmit();
+                    },
+                    style: appButtonStyle(),
+                    child: successButton("Submit"))
               ]),
             ),
           ),
