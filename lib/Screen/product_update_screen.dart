@@ -4,7 +4,8 @@ import 'package:flutter/material.dart';
 import '../RestAPI/rest_client.dart';
 
 class PUpdateScreen extends StatefulWidget {
-  const PUpdateScreen({super.key});
+  final Map productItem;
+  const PUpdateScreen(this.productItem, {super.key});
 
   @override
   State<PUpdateScreen> createState() => _PUpdateScreenState();
@@ -24,9 +25,24 @@ class _PUpdateScreenState extends State<PUpdateScreen> {
       formValues.update(mapKey, (value) => textValue);
     });
   }
-  bool loading=false;
 
-  formOnSubmit(){
+  @override
+  void initState() {
+    super.initState();
+    formValues.update("Img", (value) => widget.productItem["Img"]);
+    formValues.update(
+        "ProductCode", (value) => widget.productItem["ProductCode"]);
+    formValues.update(
+        "ProductName", (value) => widget.productItem["ProductName"]);
+    formValues.update("Qty", (value) => widget.productItem["Qty"]);
+    formValues.update(
+        "TotalPrice", (value) => widget.productItem["TotalPrice"]);
+    formValues.update("UnitPrice", (value) => widget.productItem["UnitPrice"]);
+  }
+
+  bool loading = false;
+
+  formOnSubmit() {
     if (formValues["Img"]!.isEmpty) {
       errorToast("Image Link Required !");
     } else if (formValues["ProductCode"]!.isEmpty) {
@@ -57,97 +73,100 @@ class _PUpdateScreenState extends State<PUpdateScreen> {
       body: Stack(children: [
         screenBackground(context),
         Container(
-          child: loading? const Center(child: CircularProgressIndicator()) : SingleChildScrollView(
-            child: Padding(
-              padding: const EdgeInsets.all(25.0),
-              child: Column(children: [
-                TextFormField(
-                  onChanged: (textValue) {
-                    inputOnChange("ProductName", textValue);
-                  },
-                  decoration: appInputDecoration("ProductName"),
+          child: loading
+              ? const Center(child: CircularProgressIndicator())
+              : SingleChildScrollView(
+                  child: Padding(
+                    padding: const EdgeInsets.all(25.0),
+                    child: Column(children: [
+                      TextFormField(
+                        onChanged: (textValue) {
+                          inputOnChange("ProductName", textValue);
+                        },
+                        decoration: appInputDecoration("ProductName"),
+                      ),
+                      const SizedBox(
+                        height: 20,
+                      ),
+                      TextFormField(
+                        onChanged: (textValue) {
+                          inputOnChange("ProductCode", textValue);
+                        },
+                        decoration: appInputDecoration("ProductCode"),
+                      ),
+                      const SizedBox(
+                        height: 20,
+                      ),
+                      TextFormField(
+                        initialValue: formValues["Img"],
+                        onChanged: (textValue) {
+                          inputOnChange("Img", textValue);
+                        },
+                        decoration: appInputDecoration("Img"),
+                      ),
+                      const SizedBox(
+                        height: 20,
+                      ),
+                      TextFormField(
+                        onChanged: (textValue) {
+                          inputOnChange("UnitPrice", textValue);
+                        },
+                        decoration: appInputDecoration("UnitPrice"),
+                      ),
+                      const SizedBox(
+                        height: 20,
+                      ),
+                      TextFormField(
+                        onChanged: (textValue) {
+                          inputOnChange("TotalPrice", textValue);
+                        },
+                        decoration: appInputDecoration("TotalPrice"),
+                      ),
+                      const SizedBox(
+                        height: 20,
+                      ),
+                      appDropdownStyle(DropdownButton(
+                        value: formValues["Qty"],
+                        items: const [
+                          DropdownMenuItem(
+                            value: "",
+                            child: Text("Select Qt"),
+                          ),
+                          DropdownMenuItem(
+                            value: "1 pcs",
+                            child: Text("1 pcs"),
+                          ),
+                          DropdownMenuItem(
+                            value: "2 pcs",
+                            child: Text("2 pcs"),
+                          ),
+                          DropdownMenuItem(
+                            value: "3 pcs",
+                            child: Text("3 pcs"),
+                          ),
+                          DropdownMenuItem(
+                            value: "4 pcs",
+                            child: Text("4 pcs"),
+                          )
+                        ],
+                        onChanged: (textValue) {
+                          inputOnChange("Qty", textValue);
+                        },
+                        isExpanded: true,
+                        underline: Container(),
+                      )),
+                      const SizedBox(
+                        height: 20,
+                      ),
+                      ElevatedButton(
+                          onPressed: () {
+                            formOnSubmit();
+                          },
+                          style: appButtonStyle(),
+                          child: successButton("Submit"))
+                    ]),
+                  ),
                 ),
-                const SizedBox(
-                  height: 20,
-                ),
-                TextFormField(
-                  onChanged: (textValue) {
-                    inputOnChange("ProductCode", textValue);
-                  },
-                  decoration: appInputDecoration("ProductCode"),
-                ),
-                const SizedBox(
-                  height: 20,
-                ),
-                TextFormField(
-                  onChanged: (textValue) {
-                    inputOnChange("Img", textValue);
-                  },
-                  decoration: appInputDecoration("Img"),
-                ),
-                const SizedBox(
-                  height: 20,
-                ),
-                TextFormField(
-                  onChanged: (textValue) {
-                    inputOnChange("UnitPrice", textValue);
-                  },
-                  decoration: appInputDecoration("UnitPrice"),
-                ),
-                const SizedBox(
-                  height: 20,
-                ),
-                TextFormField(
-                  onChanged: (textValue) {
-                    inputOnChange("TotalPrice", textValue);
-                  },
-                  decoration: appInputDecoration("TotalPrice"),
-                ),
-                const SizedBox(
-                  height: 20,
-                ),
-                appDropdownStyle(DropdownButton(
-                  value: formValues["Qty"],
-                  items: const [
-                    DropdownMenuItem(
-                      value: "",
-                      child: Text("Select Qt"),
-                    ),
-                    DropdownMenuItem(
-                      value: "1 pcs",
-                      child: Text("1 pcs"),
-                    ),
-                    DropdownMenuItem(
-                      value: "2 pcs",
-                      child: Text("2 pcs"),
-                    ),
-                    DropdownMenuItem(
-                      value: "3 pcs",
-                      child: Text("3 pcs"),
-                    ),
-                    DropdownMenuItem(
-                      value: "4 pcs",
-                      child: Text("4 pcs"),
-                    )
-                  ],
-                  onChanged: (textValue) {
-                    inputOnChange("Qty", textValue);
-                  },
-                  isExpanded: true,
-                  underline: Container(),
-                )),
-                const SizedBox(
-                  height: 20,
-                ),
-                ElevatedButton(
-                    onPressed: () {
-                      formOnSubmit();
-                    },
-                    style: appButtonStyle(),
-                    child: successButton("Submit"))
-              ]),
-            ),
-          ),
         )
       ]),
     );

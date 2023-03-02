@@ -53,9 +53,9 @@ class _ProductGVScreenState extends State<ProductGVScreen> {
         });
   }
 
-  goToUpdate(context) {
+  goToUpdate(context, productItem) {
     Navigator.push(context,
-        MaterialPageRoute(builder: (context) => const PUpdateScreen()));
+        MaterialPageRoute(builder: (context) => PUpdateScreen(productItem)));
   }
 
   @override
@@ -113,7 +113,7 @@ class _ProductGVScreenState extends State<ProductGVScreen> {
                                         children: [
                                           OutlinedButton(
                                               onPressed: () {
-                                                goToUpdate(context);
+                                                goToUpdate(context, productList[index]);
                                               },
                                               child: const Icon(
                                                 CupertinoIcons
