@@ -116,7 +116,8 @@ class _ProductGVScreenState extends State<ProductGVScreen> {
                                           ),
                                           OutlinedButton(
                                               onPressed: () {
-                                                deleteItem(productList[index]["_id"]);
+                                                deleteItem(
+                                                    productList[index]["_id"]);
                                               },
                                               child: const Icon(
                                                 CupertinoIcons.delete,
@@ -127,13 +128,23 @@ class _ProductGVScreenState extends State<ProductGVScreen> {
                                     ],
                                   ),
                                 ),
-                              )
+                              ),
                             ],
                           ),
                         );
                       })),
                 ),
-        )
+        ),
+        Positioned(
+            right: 15,
+            bottom: 15,
+            child: FloatingActionButton(
+              onPressed: () {},
+              child: const Icon(
+                Icons.add,
+                size: 40,
+              ),
+            ))
       ]),
     );
   }
